@@ -70,7 +70,7 @@ find . -name CMakeLists.txt -print0 | while read -r -d $'\0' cmakelists_path; do
     (cat <<EOF
 .PHONY: check-syntax
 check-syntax:
-	\${CXX} -o nul \${CXX_FLAGS} \${CXX_DEFINES} -S \${CHK_SOURCES}
+	\${CXX} -o /dev/null \${CXX_FLAGS} \${CXX_DEFINES} -S \${CHK_SOURCES}
 EOF
     ) >> $makefile_path
 done
