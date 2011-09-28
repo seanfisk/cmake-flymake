@@ -34,6 +34,12 @@ Use
 	
 2. Open your file in Emacs.
 3. `M-x flymake-mode`
+4. Enjoy the incremental compilation!
+
+Other Notes
+-----------
 
 * When you change any of your `CMakeLists.txt` files, re-run `cmake ..` and `cmake-flymake-generate bin`.
 * To remove the Flymake Makefiles, run `cmake-flymake-remove`.
+* These scripts are configured to use the GNU make variables ${CXX}, ${CXX\_FLAGS}, and ${CXX\_DEFINES} in the actual Makefiles. This means that the scripts will require editing to work with pure C projects (when using CC, CFLAGS, etc.) or any other language besides C++. This should be quite easy to figure out. Look at the actual Makefiles which get generated for more information.
+* I haven't tested this on Windows, but I doubt it will work (it is bash, after all). UNIX-like operating systems (including GNU/Linux, Mac OS X) should be fine.
