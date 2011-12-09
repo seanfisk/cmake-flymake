@@ -47,7 +47,7 @@ build_dir_name=$1
 
 # read : -r : backslash doesn't escape, -d : delims
 find . -name CMakeLists.txt -print0 | while read -r -d $'\0' cmakelists_path; do
-    
+  
     # get some paths
     rel_makefile_dir=$(dirname "$cmakelists_path")
     makefile_path=$rel_makefile_dir/$MAKEFILE_NAME
@@ -60,7 +60,7 @@ find . -name CMakeLists.txt -print0 | while read -r -d $'\0' cmakelists_path; do
     while read -r line; do
         if [[ $line =~ add_executable\(([[:alnum:][:punct:]]+) ]]; then
             executable_name=${BASH_REMATCH[1]}
-            flags_make_file=$PWD/$build_dir_name/$rel_makefile_dir/CMakeFiles/$executable_name.dir/flags.make
+            flags_make_file=$(readlink --canonicalize "$PWD/$build_dir_name/$rel_makefile_dir/CMakeFiles/$executable_name.dir/flags.make")
             echo "include $flags_make_file" >> $makefile_path
         fi
     done < $cmakelists_path
