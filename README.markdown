@@ -26,11 +26,11 @@ Use
 1. Follow these project setup instructions:
 
 		cd your_cmake_project
-		mkdir bin # your build directory
-		cd bin
+		mkdir build # your build directory
+		cd build
 		cmake .. # create the CMake configs
 		cd ..
-		cmake-flymake-generate bin # or whatever you named the build directory
+		cmake-flymake-generate build # or whatever you named the build directory
 	
 2. Open your file in Emacs.
 3. `M-x flymake-mode`
@@ -39,7 +39,12 @@ Use
 Other Notes
 -----------
 
-* When you change any of your `CMakeLists.txt` files, re-run `cmake ..` and `cmake-flymake-generate bin`.
+* When you change any of your `CMakeLists.txt` files, re-run `cmake ..` and `cmake-flymake-generate build`.
 * To remove the Flymake Makefiles, run `cmake-flymake-remove`.
 * These scripts are configured to use the GNU make variables ${CXX}, ${CXX\_FLAGS}, and ${CXX\_DEFINES} in the actual Makefiles. This means that the scripts will require editing to work with pure C projects (when using CC, CFLAGS, etc.) or any other language besides C++. This should be quite easy to figure out. Look at the actual Makefiles which get generated for more information.
-* I haven't tested this on Windows, but I doubt it will work (it is bash, after all). UNIX-like operating systems (including GNU/Linux, Mac OS X) should be fine.
+* I haven't tested this on Windows, but I doubt it will work (it is bash, after all). UNIX-like operating systems (including GNU/Linux, BSD, Mac OS X) should be fine.
+
+TODO
+----
+
+* I'd like to not have to parse `CMakeLists.txt`, because I already had some problems in a simple build when I used a variable as my executable name. Alternative approaches involve something like `find build -name flags.make`, e tc.
